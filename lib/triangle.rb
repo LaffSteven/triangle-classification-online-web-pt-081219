@@ -12,17 +12,15 @@ class Triangle
     validate_triangle
     if a == b && b == c #All sides equal
       :equilateral
-     
-    elsif a == b || b == c || a == c  #If two sides are equal
-     
+    elsif a == b || b == c || a == c  #Two sides are equal
       :isosceles
-    # No sides have the same value  
-    else
+    else  #No sides have the same value 
       :scalene
     end
   end
 
   def validate_triangle
+    # Make sure no two sides are less than the third
     valid_triangle = [(a + b > c), (a + c > b), (b + c > a)]
     [a, b, c].each { |side| valid_triangle << false if side <= 0 }
     raise TriangleError if valid_triangle.include?(false)
